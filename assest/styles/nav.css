@@ -1,0 +1,345 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f5f5;
+}
+
+.header-containar{
+    width: 100%;
+    /* height: 100vh; */
+}
+
+
+
+.header-containar nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 50px;
+    background-color: rgba(15, 23, 42, 0.8);
+    position: fixed;
+    width: 100%;
+    height: 120px;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* -------------------------Navbar scroll styles------------------------- */
+#mainNavbar.scrolled {
+    background-color: rgb(16, 34, 75); 
+}
+
+
+.logo img{
+    width: 100px;
+    height: 100px;
+}
+
+
+.header-containar nav .profession{
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+.header-containar nav .profession a{
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    font-size: 24px;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+
+
+.header-containar nav .profession a:hover{
+    color: rgb(249, 115, 22);
+}
+
+.header-containar nav .btn{
+    display: flex;
+    align-items: end;
+    list-style: none;
+    gap: 25px;
+    
+}
+.header-containar nav .btn a{
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #ff5722;
+    color: #fff;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 18px;
+    transition: font-weight 0.6s ease-in-out;
+    position: relative;
+}
+.header-containar nav .btn a:hover{
+    background-color: #c0350b;
+}
+
+.header-containar nav .profile-icon{
+    display: flex;
+    align-items: end;
+    list-style: none;
+    
+}
+
+.header-containar nav .profile-icon img{
+    font-size: 56px;
+    padding: 20px;
+    background-color: #ff5722;
+    color: #fff;
+    border-radius: 50%;
+}
+
+
+
+/* -------------------------Footer styles------------------------- */
+.footer-containar{
+    width: 100%;
+    background-color: rgb(15, 23, 42);
+    display: flex;
+    align-items: space-between;
+    /* margin-top: 5%; */
+
+}
+.footer-containar p, a, h3, h4{
+    color: #fff;
+    font-size: 18px;
+}
+.footer-containar a{
+    text-decoration: none;
+}
+
+.footer-containar .logo{
+    margin-left: 5%;
+    padding: 20px 0px;
+    display: block;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.footer-containar .logo .contact{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-containar .about{
+    width: 40%;
+    margin-left: 5%;
+    padding: 20px 0px;
+    text-align: left;
+}
+
+.footer-containar .about p{
+    text-align: justify;
+}
+
+.footer-containar .quick-links{
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 20px 0px;
+    /* gap: 20px; */
+    display: block;
+    flex-direction: column;
+    
+}
+
+.footer-containar .quick-links a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    /* transition: border 0.3s, background-color 0.3s ease-in-out; */
+    position: relative;
+}
+
+
+.footer-containar .quick-links .left{
+    display: flex;
+    flex-direction: row;
+    gap: 60px;
+}
+.footer-containar .quick-links .right{
+    display: flex;
+    flex-direction: row;
+    gap: 44px;
+}
+
+.footer-containar .email{
+    margin-right: 5%;
+    display: block;
+    flex-direction: column;
+    gap: 20px;
+    
+}
+
+
+.footer-containar .email p{
+    color: black;
+    border-radius: 8px;
+    background-color: seashell;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.footer-containar .email .email_contact{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* gap: 15px; */
+    background-color: seashell;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.copyright{
+    background-color: rgb(15, 23, 42);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 100px;
+}
+
+.copyright .social-icons{
+    display: flex;
+    margin-right: 5%;
+    margin-left: 5%;
+}
+
+.copyright .social-icons svg{
+    color: #fff;
+    margin-right: 5%;
+    margin-top: 18px;
+    margin-right: 10px;
+}
+
+.copyright p{
+    color: #fff;
+    text-align: right;
+    padding: 15px 0px;
+    font-size: 16px;
+}
+
+.copyright .footer-logo{
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+.copyright .product-by{
+    display: flex;
+    align-items: center;
+    margin-left: 5%;
+    color: #fff;
+    font-size: 16px;
+}
+
+.email_contact img.arrow{
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+    color: black;
+}
+
+
+.menu-toggle {
+    display: none; /* Hidden on desktop */
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    width: 30px;
+    height: 3px;
+    background-color: white;
+    border-radius: 2px;
+}
+
+@media screen and (max-width: 768px) {
+    .header-containar nav {
+        padding: 10px 20px;
+        height: auto;
+        min-height: 80px;
+    }
+
+    .logo img {
+        width: 60px;
+        height: 60px;
+    }
+
+    
+    .header-containar nav .profession {
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background-color: rgb(16, 34, 75);
+        padding: 20px;
+        text-align: center;
+        gap: 15px;
+        font-size: 12px;
+    }
+    
+    .menu-toggle {
+        display: flex;
+    }
+    /* -------------------------Footer responsive styles------------------------- */
+    .footer-containar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-bottom: 30px;
+    }
+
+    .footer-containar .about,
+    .footer-containar .quick-links,
+    .footer-containar .email,
+    .footer-containar .logo {
+        width: 90%;
+        margin: 10px 5%;
+        padding: 10px 0;
+    }
+
+    .footer-containar .quick-links .left,
+    .footer-containar .quick-links .right {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    /* Copyright Adjustments */
+    .copyright {
+        flex-direction: column;
+        height: auto;
+        padding: 20px 0;
+        align-items: center;
+        text-align: center;
+    }
+
+    .copyright .social-icons,
+    .copyright .product-by {
+        margin: 10px 0;
+        justify-content: center;
+    }
+
+    .copyright p {
+        text-align: center;
+    }
+}
