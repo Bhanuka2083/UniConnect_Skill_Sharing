@@ -7,7 +7,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'learner') {
     exit();
 }
 
-// Handle Search and Filtering
+//Handle Search and Filtering
 $search_query = "";
 if (isset($_GET['search'])) {
     $search = mysqli_real_escape_string($conn, $_GET['search']);
@@ -17,7 +17,7 @@ if (isset($_GET['search'])) {
     $search_query = " WHERE c.category_id = $cat_id";
 }
 
-// Fetch all courses with Tutor names
+//Fetch all courses with Tutor names
 $sql = "SELECT c.*, u.username as tutor_name, cat.category_name 
         FROM courses c 
         JOIN users u ON c.tutor_id = u.user_id 
@@ -25,7 +25,7 @@ $sql = "SELECT c.*, u.username as tutor_name, cat.category_name
         $search_query";
 $courses = mysqli_query($conn, $sql);
 
-// Fetch Categories for the filter bar
+//Fetch Categories for the filter bar
 $categories = mysqli_query($conn, "SELECT * FROM categories");
 ?>
 
@@ -626,7 +626,7 @@ $categories = mysqli_query($conn, "SELECT * FROM categories");
 
 
 
-    <div style="padding: 20px; max-width: 1200px; margin: auto; height: 100vh">
+    <div style="padding: 20px; max-width: 1200px; margin: auto; height: auto;">
         <div class="header-actions">
             <h1>Find a Skill</h1>
             <a href="learner_my_requests.php" class="link">My Requests</a>

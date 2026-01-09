@@ -24,7 +24,7 @@ if (isset($_POST['send_request'])) {
     $check = mysqli_query($conn, "SELECT * FROM requests WHERE course_id = $course_id AND learner_id = $learner_id AND status = 'pending'");
     
     if (mysqli_num_rows($check) == 0) {
-        // Note: I've added a 'learner_message' field here. 
+         
         // If you haven't added it to your DB yet, you can skip the variable or add it to your table.
         $sql = "INSERT INTO requests (course_id, learner_id, status, is_read_tutor) 
                 VALUES ($course_id, $learner_id, 'pending', 0)";
@@ -43,6 +43,7 @@ if (isset($_POST['send_request'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=arrow_forward" />
     <link rel="stylesheet" href="assets/style.css">
     <title>Request Session - UniConnect</title>
     <style>

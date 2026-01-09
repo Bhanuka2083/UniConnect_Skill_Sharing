@@ -9,10 +9,10 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'learner') {
 
 $learner_id = $_SESSION['user_id'];
 
-// 1. Mark status updates as "Read" when the learner opens this page
+//Mark status updates as "Read" when the learner opens this page
 mysqli_query($conn, "UPDATE requests SET is_read_learner = 1 WHERE learner_id = $learner_id");
 
-// 2. Handle Feedback Submission
+//Handle Feedback Submission
 if (isset($_POST['submit_review'])) {
     $course_id = $_POST['course_id'];
     $rating = $_POST['rating'];
@@ -24,7 +24,7 @@ if (isset($_POST['submit_review'])) {
     }
 }
 
-// 3. Fetch all requests with their associated session details (if any)
+//Fetch all requests with their associated session details (if any)
 $my_requests = mysqli_query($conn, "SELECT r.*, c.title, u.username as tutor_name, s.schedule_time, s.platform, s.meeting_details 
                                     FROM requests r 
                                     JOIN courses c ON r.course_id = c.course_id 
@@ -38,7 +38,8 @@ $my_requests = mysqli_query($conn, "SELECT r.*, c.title, u.username as tutor_nam
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="asset/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=arrow_forward" />
     <title>My Requests - UniConnect</title>
     <style>
         .status-box { 
@@ -51,6 +52,9 @@ $my_requests = mysqli_query($conn, "SELECT r.*, c.title, u.username as tutor_nam
         }
         .status-accepted { 
             border-left-color: #2ecc71; 
+        }
+        .status-box p, h3{
+            color: #000000ff;
         }
         .status-rejected { 
             border-left-color: #e74c3c; 
@@ -664,7 +668,7 @@ $my_requests = mysqli_query($conn, "SELECT r.*, c.title, u.username as tutor_nam
             </div>
 
             <div class="profession">
-                <a href="home.html">Session Requests</a>
+                <a href="learner_dashboard.php">Session Requests</a>
                 <!-- <a href="home.html">Home</a>
                 <a href="for_std.html">For Students</a>
                 <a href="for_tutor.html">For Teachers</a> -->
@@ -698,9 +702,8 @@ $my_requests = mysqli_query($conn, "SELECT r.*, c.title, u.username as tutor_nam
         <?php if(mysqli_num_rows($my_requests) > 0): ?>
             <?php while($row = mysqli_fetch_assoc($my_requests)): ?>
                 <div class="status-box status-<?php echo $row['status']; ?>">
-                    <h3><?php echo $row['title']; ?></h3>
+                    <h3 style="color: #000000ff; font-weight: 700;"><?php echo $row['title']; ?></h3>
                     <p><strong>Tutor:</strong> <?php echo $row['tutor_name']; ?></p>
-                    <p><strong>Course:</strong> <?php echo $row['title']; ?></p>
                     <p><strong>Status:</strong> <?php echo strtoupper($row['status']); ?></p>
 
                     <?php if($row['status'] == 'accepted'): ?>

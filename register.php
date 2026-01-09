@@ -1,10 +1,10 @@
 <?php
 include 'config/db.php';
 
-$error = ""; // Variable to store error messages
+$error = ""; 
 
 if (isset($_POST['register'])) {
-    // 1. Collect and sanitize data
+    //Collect and sanitize data
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $pass = $_POST['password'];
@@ -12,25 +12,37 @@ if (isset($_POST['register'])) {
     $mobile_number = mysqli_real_escape_string($conn, $_POST['mobile_number']);
     $role = $_POST['role'];
 
-    // 2. Check if all fields are filled
+    //Check if all fields are filled
     if (empty($username) || empty($email) || empty($pass) || empty($confirm_pass) || empty($role)) {
         $error = "All fields are required!";
     } 
-    // 3. Check password length
+    //Check mobile number
+    elseif (strlen($mobile_number)!=10){
+        $error = "Mobile number must be 10 digits!";
+        }elseif ($mobile_number[0]!=0){
+            $error = "Mobile number must be start from 0!";
+    }
+    //Check email address
+    elseif (strlen($email) < 12){
+        $error = "Email must contain at least 12 characters. (@mail.com) ";
+    }
+
+
+    //Check password length
     elseif (strlen($pass) < 8) {
         $error = "Password must be at least 8 characters long!";
     } 
-    // 4. Check if passwords match
+    //Check if passwords match
     elseif ($pass !== $confirm_pass) {
         $error = "Passwords do not match!";
     } 
     else {
-        // 5. Check if email already exists
+        //Check if email already exists
         $check_email = mysqli_query($conn, "SELECT email FROM users WHERE email='$email'");
         if (mysqli_num_rows($check_email) > 0) {
             $error = "This email is already registered!";
         } else {
-            // 6. Success - Hash password and insert
+            //Success - Hash password and insert
             $hashed_pass = password_hash($pass, PASSWORD_DEFAULT);
             $sql = "INSERT INTO users (username, email, password, mobile_number, role) VALUES ('$username', '$email', '$hashed_pass', '$mobile_number', '$role')";
             
@@ -167,6 +179,8 @@ if (isset($_POST['register'])) {
         @media (max-width: 480px) {
             .container {
                 padding: 25px;
+                margin-top: 30%;
+                width: 90%;
             }
         }
 
@@ -594,6 +608,7 @@ if (isset($_POST['register'])) {
                     <option value="">-- Select Role --</option>
                     <option value="learner">Learner</option>
                     <option value="tutor">Tutor</option>
+                    <!-- <option value="admin">Tutor</option> -->
                 </select>
             </div>
             <button type="submit" name="register">Sign Up</button>

@@ -10,22 +10,22 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'tutor') {
 
 $tutor_id = $_SESSION['user_id'];
 
-// 1. Fetch Categories for the "Create Course" dropdown
+//Fetch Categories for the "Create Course" dropdown
 $categories = mysqli_query($conn, "SELECT * FROM categories");
 
-// 2. Fetch Tutor's Courses
+//Fetch Tutor's Courses
 $my_courses = mysqli_query($conn, "SELECT c.*, cat.category_name FROM courses c 
                                    JOIN categories cat ON c.category_id = cat.category_id 
                                    WHERE c.tutor_id = $tutor_id");
 
-// 3. Count Unread Requests (Notification Bell)
+//Count Unread Requests (Notification Bell)
 $notif_query = mysqli_query($conn, "SELECT COUNT(*) as unread FROM requests r 
                                     JOIN courses c ON r.course_id = c.course_id 
                                     WHERE c.tutor_id = $tutor_id AND r.is_read_tutor = 0");
 $notif_data = mysqli_fetch_assoc($notif_query);
 $unread_count = $notif_data['unread'];
 
-// 4. Handle New Course Submission
+//Handle New Course Submission
 if (isset($_POST['add_course'])) {
     $title = mysqli_real_escape_string($conn, $_POST['title']);
     $desc = mysqli_real_escape_string($conn, $_POST['description']);
@@ -77,7 +77,7 @@ if (isset($_POST['add_course'])) {
             max-width: 1200px; 
             margin: auto; 
             margin-top: 120px;
-            height: 100vh;
+            height: auto;
         }
         .grid { 
             display: grid; 
@@ -717,7 +717,7 @@ if (isset($_POST['add_course'])) {
 
 
 
-    <div class="card" style="margin-top: 2%; grid-column: span 2; margin-left: auto; margin-right: auto; max-width: 90%; background: rgb(35, 180, 160); padding: 20px; margin-bottom: 50px; border-radius: 10px;">
+    <div class="card" style="margin-top: 2%; grid-column: span 2; margin-left: auto; margin-right: auto; max-width: 90%; background: rgb(35, 180, 160); padding: 20px; margin-bottom: 50px; border-radius: 10px; margin-top: 10%;">
         <h3>Student Feedbacks & Reviews</h3>
         <?php
         $reviews = mysqli_query($conn, "SELECT r.*, u.username, c.title 

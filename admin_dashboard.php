@@ -75,6 +75,10 @@ $categories = mysqli_query($conn, "SELECT * FROM categories");
             flex: 1; 
             box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
         }
+        .card h3 { 
+            margin-bottom: 10px; 
+            color: #000000ff; 
+        }
         .cat-list { 
             background: white; 
             padding: 20px; 

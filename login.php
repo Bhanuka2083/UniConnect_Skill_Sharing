@@ -147,6 +147,8 @@ if (isset($_POST['login'])) {
         @media (max-width: 480px) {
             .container {
                 padding: 25px;
+                margin-top: 30%;
+                width: 90%;
             }
         }
 

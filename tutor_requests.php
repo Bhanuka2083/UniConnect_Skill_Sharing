@@ -20,6 +20,38 @@ if (isset($_POST['accept_request'])) {
     $platform = $_POST['platform'];
     $details = mysqli_real_escape_string($conn, $_POST['details']);
 
+    // $date = $_POST['schedule_time'] ?? '';
+    // if (!empty($date)) {
+    //     $proposed_ts = strtotime($date);
+    //     $now = time();
+    //     $two_hours_from_now = $now + (2 * 3600); // 3600 seconds in an hour
+
+    //     //Prevent booking on past
+    //     if($proposed_ts < $now){
+    //     $errors[] = "You cannot go into past.";
+    //     }
+
+    //     // Check 2-hour advance time
+    //     if ($proposed_ts < $two_hours_from_now) {
+    //     $errors[] = 'Please book at least 2 hours in advance.';
+    //     }
+
+    //     // Check working Hours
+    //     $hour = (int)date('H', $proposed_ts);
+    //     $start_hour = 8;  // 8 AM
+    //     $end_hour = 17;   // 5 PM
+
+    //     if ($hour < $start_hour || $hour >= $end_hour) {
+    //     $errors[] = "Sessions can only be booked during business hours (0{$start_hour}:00 to {$end_hour}:00).";
+    //     }
+
+    //     //Prevent booking on weekends
+    //     $day_of_week = date('N', $proposed_ts); // 1 (Mon) to 7 (Sun)
+    //     if ($day_of_week > 5) {
+    //     $errors[] = 'Sessions are only available Monday through Friday.';
+    //     }
+    // }
+
     mysqli_query($conn, "UPDATE requests SET status = 'accepted', is_read_learner = 0 WHERE request_id = $req_id");
     mysqli_query($conn, "INSERT INTO sessions (request_id, schedule_time, platform, meeting_details) 
                          VALUES ($req_id, '$date', '$platform', '$details')");
@@ -49,6 +81,7 @@ $requests = mysqli_query($conn, "SELECT r.*, c.title, u.username as learner_name
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=arrow_forward" />
     <title>Manage Requests - UniConnect</title>
 
     <style>
@@ -690,7 +723,7 @@ $requests = mysqli_query($conn, "SELECT r.*, c.title, u.username as learner_name
 
         <?php while($row = mysqli_fetch_assoc($requests)): ?>
             <div class="request-card">
-                <h3>Course: <?php echo $row['title']; ?></h3>
+                <h3 style="color: #000000ff; font-weight: 700;">Course: <?php echo $row['title']; ?></h3>
                 <p><strong>From:</strong> <?php echo $row['learner_name']; ?></p>
                 <p>Status: <span class="status-badge <?php echo $row['status']; ?>"><?php echo strtoupper($row['status']); ?></span></p>
 
