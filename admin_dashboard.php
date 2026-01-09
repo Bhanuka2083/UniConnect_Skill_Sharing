@@ -2,6 +2,8 @@
 session_start();
 include 'config/db.php';
 
+$error = ""; 
+
 // Security Check: Only allow Admins
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     header("Location: login.php");
@@ -18,7 +20,7 @@ if (isset($_POST['add_category'])) {
         }
 
         else {
-            echo "<script>alert('Category already exists!');</script>";
+            $error = "Category already exists!";
         }
 
     }
@@ -47,6 +49,17 @@ $categories = mysqli_query($conn, "SELECT * FROM categories");
     <title>Admin Dashboard - UniConnect</title>
     
     <style>
+
+        .error-msg { 
+            color: #721c24; 
+            background-color: #f8d7da; 
+            padding: 10px; 
+            border-radius: 4px; 
+            margin-bottom: 15px; 
+            font-size: 0.9rem; 
+            text-align: center; 
+            border: 1px solid #f5c6cb; 
+        }
 
         .admin-grid { 
             display: grid; 
@@ -519,6 +532,11 @@ $categories = mysqli_query($conn, "SELECT * FROM categories");
 
 
     <div class="admin-grid">
+
+        <?php if ($error != ""): ?>
+            <div class="error-msg"><?php echo $error; ?></div>
+        <?php endif; ?>
+
         <div class="sidebar">
             <h2>UniConnect</h2>
             <p>Welcome, Admin <span style = "font-weight: bold;"><?php echo $_SESSION['username']; ?></span></p>

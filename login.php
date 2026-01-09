@@ -2,6 +2,9 @@
 session_start();
 include 'config/db.php';
 
+$error = ""; 
+
+
 if (isset($_POST['login'])) {
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = $_POST['password'];
@@ -19,10 +22,10 @@ if (isset($_POST['login'])) {
             elseif ($user['role'] == 'admin') header("Location: admin_dashboard.php");
             else header("Location: learner_dashboard.php");
         } else {
-            echo "<script>alert('Wrong password!');</script>";
+            $error = "Incorrect password!";
         }
     } else {
-        echo "<script>alert('User not found!');</script>";
+        $error = "User not found!";
     }
 }
 ?>
@@ -35,6 +38,18 @@ if (isset($_POST['login'])) {
     <title>UniConnect - Login</title>
 
     <style>
+
+        .error-msg { 
+            color: #721c24; 
+            background-color: #f8d7da; 
+            padding: 10px; 
+            border-radius: 4px; 
+            margin-bottom: 15px; 
+            font-size: 0.9rem; 
+            text-align: center; 
+            border: 1px solid #f5c6cb; 
+        }
+        
         /* General Reset */
         * {
             box-sizing: border-box;
@@ -541,6 +556,11 @@ if (isset($_POST['login'])) {
 
     <div class="container">
         <h2>Login</h2>
+
+        <?php if ($error != ""): ?>
+            <div class="error-msg"><?php echo $error; ?></div>
+        <?php endif; ?>
+
         <form method="POST">
             <div class="form-group">
                 <label>Email</label>
